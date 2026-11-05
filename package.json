@@ -13,7 +13,7 @@
     "test:sim": "npm run test:sim -w @poker/backend",
     "start": "npm run start -w @poker/backend"
   },
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^9.1.2"
   }
 }
