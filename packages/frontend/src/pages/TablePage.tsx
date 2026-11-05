@@ -84,30 +84,30 @@ export const TablePage: React.FC<TablePageProps> = ({ roomId, onLeave }) => {
   return (
     <div className="relative min-h-screen bg-casino-bg text-slate-100 flex flex-col justify-between overflow-x-hidden">
       {/* Top Table Control Bar */}
-      <header className="px-3 sm:px-6 py-2.5 bg-black/80 border-b border-slate-800/80 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between gap-2">
+      <header className="px-2.5 sm:px-6 py-1.5 sm:py-2.5 bg-black/85 border-b border-slate-800/80 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between gap-1.5">
         {/* Left: Back & Room Details */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
           <button
             onClick={onLeave}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+            className="p-1.5 sm:p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition cursor-pointer shrink-0"
             title="Return to Lobby"
           >
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="font-serif-luxury font-bold text-xs sm:text-base text-amber-300 truncate max-w-[120px] sm:max-w-[220px]">
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5">
+              <h2 className="font-serif-luxury font-bold text-xs sm:text-base text-amber-300 truncate max-w-[110px] sm:max-w-[220px]">
                 {tableState?.config.name || `Table ${roomId}`}
               </h2>
               {tableState?.isHandInProgress && (
-                <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                <span className="px-1.5 py-0.2 rounded-full text-[8px] sm:text-[9px] font-extrabold bg-emerald-950 text-emerald-400 border border-emerald-800 shrink-0">
                   {tableState.stage}
                 </span>
               )}
             </div>
-            <span className="text-[10px] sm:text-xs text-slate-400 font-medium">
-              Blinds: ${tableState?.config.smallBlind || 10}/${tableState?.config.bigBlind || 20} • {seatedPlayersCount}/{tableState?.config.maxPlayers || 8} Seated
+            <span className="text-[9px] sm:text-xs text-slate-400 font-medium truncate block">
+              ${tableState?.config.smallBlind || 10}/${tableState?.config.bigBlind || 20} • {seatedPlayersCount}/{tableState?.config.maxPlayers || 8} Seated
             </span>
           </div>
         </div>
@@ -121,11 +121,11 @@ export const TablePage: React.FC<TablePageProps> = ({ roomId, onLeave }) => {
         )}
 
         {/* Right: Actions (Share, History, Rebuy, Sound, Settings) */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {/* Share Invitation Button */}
           <button
             onClick={() => setIsShareOpen(true)}
-            className="bg-amber-500 hover:bg-amber-400 text-black px-2.5 sm:px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-gold-glow transition cursor-pointer"
+            className="bg-amber-500 hover:bg-amber-400 text-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs flex items-center gap-1 shadow-gold-glow transition cursor-pointer"
             title="Invite Friends"
           >
             <Share2 className="w-3.5 h-3.5" />
@@ -135,39 +135,39 @@ export const TablePage: React.FC<TablePageProps> = ({ roomId, onLeave }) => {
           {/* Hand History */}
           <button
             onClick={() => setIsHistoryOpen(true)}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
+            className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
             title="Hand History"
           >
-            <History className="w-4 h-4" />
+            <History className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
 
           {/* Rebuy Chips */}
           {isSeated && (
             <button
               onClick={() => setIsRebuyOpen(true)}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
+              className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
               title="Add Chips / Rebuy"
             >
-              <Coins className="w-4 h-4" />
+              <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           )}
 
           {/* Sound Toggle */}
           <button
             onClick={handleToggleSound}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
+            className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
             title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
           >
-            {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+            {isMuted ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
           </button>
 
           {/* Settings */}
           <button
             onClick={() => setIsSettingsOpen(true)}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
+            className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 transition cursor-pointer"
             title="Preferences"
           >
-            <Sliders className="w-4 h-4" />
+            <Sliders className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
         </div>
       </header>

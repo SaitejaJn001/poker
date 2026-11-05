@@ -14,7 +14,7 @@ export const CommunityCards: React.FC<CommunityCardsProps> = ({ cards, winningCa
   };
 
   return (
-    <div className="flex items-center justify-center gap-1.5 sm:gap-2.5 p-2 rounded-xl bg-black/40 border border-emerald-500/20 shadow-inner backdrop-blur-sm">
+    <div className="flex items-center justify-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-xl bg-black/40 border border-emerald-500/20 shadow-inner backdrop-blur-sm">
       {[0, 1, 2, 3, 4].map((idx) => {
         const card = cards[idx];
         const isWinning = isCardWinning(card);
@@ -23,7 +23,7 @@ export const CommunityCards: React.FC<CommunityCardsProps> = ({ cards, winningCa
           return (
             <div
               key={idx}
-              className="w-12 h-16 sm:w-14 sm:h-20 rounded-md border-2 border-dashed border-emerald-900/40 bg-emerald-950/20 flex items-center justify-center text-emerald-800/30 text-xs font-semibold select-none"
+              className="w-8 h-12 sm:w-12 sm:h-16 rounded-[4px] sm:rounded-md border-2 border-dashed border-emerald-900/40 bg-emerald-950/20 flex items-center justify-center text-emerald-800/40 text-[9px] sm:text-xs font-semibold select-none"
             >
               {idx < 3 ? 'FLOP' : idx === 3 ? 'TURN' : 'RIVER'}
             </div>
@@ -32,11 +32,10 @@ export const CommunityCards: React.FC<CommunityCardsProps> = ({ cards, winningCa
 
         return (
           <div key={idx} className="animate-deal-card">
-            <CardView card={card} highlight={isWinning} size="md" />
+            <CardView card={card} highlight={isWinning} size="sm" />
           </div>
         );
       })}
     </div>
   );
 };
-

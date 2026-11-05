@@ -41,9 +41,9 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
       {!isOpen && (
         <button
           onClick={onToggle}
-          className="fixed bottom-4 right-4 z-40 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black p-3 rounded-full shadow-gold-glow flex items-center gap-2 font-bold cursor-pointer transition hover:scale-105"
+          className="fixed bottom-20 right-3 sm:bottom-4 sm:right-4 z-40 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black p-2.5 sm:p-3 rounded-full shadow-gold-glow flex items-center gap-2 font-bold cursor-pointer transition hover:scale-105"
         >
-          <MessageSquare className="w-5 h-5" />
+          <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
           <span className="hidden sm:inline text-xs uppercase tracking-wider">Table Chat</span>
           {messages.length > 0 && (
             <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
@@ -53,7 +53,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
 
       {/* Slide-in Chat Panel */}
       {isOpen && (
-        <div className="fixed bottom-4 right-4 z-50 w-80 sm:w-96 h-[440px] bg-slate-950/95 border border-amber-500/30 rounded-2xl shadow-2xl flex flex-col backdrop-blur-xl overflow-hidden animate-fade-in">
+        <div className="fixed inset-x-3 bottom-3 sm:inset-x-auto sm:bottom-4 sm:right-4 z-50 w-auto sm:w-96 h-[400px] sm:h-[440px] bg-slate-950/95 border border-amber-500/30 rounded-2xl shadow-2xl flex flex-col backdrop-blur-xl overflow-hidden animate-fade-in">
           {/* Header */}
           <div className="px-4 py-3 bg-slate-900/80 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
