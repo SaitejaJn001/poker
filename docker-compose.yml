@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: poker-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: poker
+      POSTGRES_PASSWORD: pokersecret
+      POSTGRES_DB: poker_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: poker-redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: .
+      dockerfile: packages/backend/Dockerfile
+    container_name: poker-backend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      JWT_SECRET: "poker-luxury-jwt-secret-9988"
+      DATABASE_URL: "postgresql://poker:pokersecret@postgres:5432/poker_db"
+      REDIS_URL: "redis://redis:6379"
+    depends_on:
+      - postgres
+      - redis
+
+  frontend:
+    build:
+      context: .
+      dockerfile: packages/frontend/Dockerfile
+    container_name: poker-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+

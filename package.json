@@ -1,0 +1,19 @@
+{
+  "name": "poker-website",
+  "version": "1.0.0",
+  "description": "Premium Multiplayer Texas Hold'em Poker Application",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"backend,frontend\" -c \"blue,green\" \"npm run dev -w @poker/backend\" \"npm run dev -w @poker/frontend\"",
+    "build": "npm run build -w @poker/backend && npm run build -w @poker/frontend",
+    "test": "npm run test -w @poker/backend",
+    "test:sim": "npm run test:sim -w @poker/backend",
+    "start": "npm run start -w @poker/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
